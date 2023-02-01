@@ -1,0 +1,11 @@
+editor default
+
+boolean [true | false]
+
+Metamodel {
+    [
+        metamodel ${qualifiedName}
+            ${elements vertical}
+    ]
+}
+

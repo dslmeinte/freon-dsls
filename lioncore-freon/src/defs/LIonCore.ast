@@ -1,0 +1,71 @@
+language LIonCore
+
+model Metamodels {
+    metamodels: Metamodel[];
+}
+
+concept Concept base FeaturesContainer {
+  abstract: boolean;
+  reference extends_?: Concept;
+  reference implements_: ConceptInterface[];
+}
+
+concept ConceptInterface base FeaturesContainer {
+  reference extends_: ConceptInterface[];
+}
+
+concept Containment base Link {
+}
+
+abstract concept DataType base NamespacedEntity {
+}
+
+concept Enumeration base MetamodelElement  implements NamespaceProvider {
+  literals: EnumerationLiteral[];
+}
+
+concept EnumerationLiteral base NamespacedEntity {
+}
+
+abstract concept Feature base NamespacedEntity {
+  optional: boolean;
+  derived: boolean;
+}
+
+abstract concept FeaturesContainer base NamespacedEntity  implements NamespaceProvider {
+  features: Feature[];
+  reference allFeatures: Feature[];
+}
+
+abstract concept Link base Feature {
+  multiple: boolean;
+  reference type: FeaturesContainer;
+}
+
+modelunit Metamodel {
+  name: identifier;
+  elements: MetamodelElement[];
+  reference dependsOn: Metamodel[];
+}
+
+abstract concept MetamodelElement base NamespacedEntity {
+}
+
+interface NamespaceProvider {
+}
+
+abstract concept NamespacedEntity {
+  name: identifier;
+}
+
+concept PrimitiveType base DataType {
+}
+
+concept Property base Feature {
+  reference type: DataType;
+  programmatic: boolean;
+}
+
+concept Reference base Link {
+}
+

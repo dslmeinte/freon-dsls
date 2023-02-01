@@ -1,0 +1,3 @@
+* &#10003; If there's only 1 model in storage, open that right away.
+* &#10003; Delete a model.
+* Normalize storage (more).
