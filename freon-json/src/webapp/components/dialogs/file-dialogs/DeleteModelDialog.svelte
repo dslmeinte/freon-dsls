@@ -10,17 +10,15 @@
         <i>Note that this action cannot be undone!</i>
         <LayoutGrid>
             {#each $modelNames as name}
-                {#if (name !== $currentModelName)}
-                    <Cell>
-                        <FormField> <!-- FormField ensures that when the label is clicked the checkbox is marked -->
-                            <Radio
-                                    bind:group={modelToBeDeleted}
-                                    value={name}
-                            />
-                            <span slot="label">{name}</span>
-                        </FormField>
-                    </Cell>
-                {/if}
+                <Cell>
+                    <FormField> <!-- FormField ensures that when the label is clicked the checkbox is marked -->
+                        <Radio
+                            bind:group={modelToBeDeleted}
+                            value={name}
+                        />
+                        <span slot="label">{name}</span>
+                    </FormField>
+                </Cell>
             {/each}
         </LayoutGrid>
     </Content>

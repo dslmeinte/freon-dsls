@@ -39,7 +39,10 @@
 
 	import { modelNames } from "./components/stores/ServerStore";
 	import { drawerOpen } from "./components/stores/DrawerStore";
-	import { openModelDialogVisible } from "./components/stores/DialogStore";
+	import {
+		initializing,
+		openModelDialogVisible
+	} from "./components/stores/DialogStore";
 	import { userMessageOpen } from "./components/stores/UserMessageStore";
 	import { languageName } from "./components/stores/LanguageStore";
 	import { currentModelName } from "./components/stores/ModelStore";
@@ -57,6 +60,7 @@
 	import StatusBar from "./components/editor-panel/StatusBar.svelte";
 	import RenameUnitDialog from "./components/dialogs/file-dialogs/RenameUnitDialog.svelte";
 	import HelpDialog from "./components/dialogs/HelpDialog.svelte";
+	import {EditorState} from "./language/EditorState";
 
 	muteLogs();
 
@@ -86,13 +90,17 @@
 		await serverCommunication.loadModelList((names: string[]) => {
 			if (names.length > 0) {
 				$modelNames = names;
+				if (names.length === 1) {
+					EditorState.getInstance().openModel(names[0]);
+					$initializing = false;
+				}
 			}
 		});
 
-		if (!$userMessageOpen) {
-			// open the app with the open/new model dialog
-			$openModelDialogVisible = true;
-		}
+		// open the app with the open/new model dialog
+		$openModelDialogVisible = $modelNames.length !== 1 && !$userMessageOpen;
+
+		// TODO  get to work: delete model
 	});
 </script>
 
