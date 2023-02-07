@@ -1,19 +1,11 @@
-
 // TODO rethink these interfaces
 import type { PiElement } from "@projectit/core";
 import { PiNamedElement } from "@projectit/core";
-// import { setUserMessage } from "../webapp-ts-utils/UserMessageUtils";
 
-// export interface IModelUnitData {
-//     // id: number;
-//     unitName: string;
-//     modelName: string;
-//     language: string;
-//     // url?: string;
-// }
 
 /**
- *  Takes care of the communication with the server at SERVER_URL from WebappConfiguration.
+ * Takes care of the communication with the persistence layer.
+ * Which implementation is used is configured in {@link WebappConfiguration}.
  */
 export interface IServerCommunication {
 
@@ -42,7 +34,7 @@ export interface IServerCommunication {
     renameModelUnit(modelName: string, oldName: string, newName: string, piUnit: PiNamedElement) ;
 
     /**
-     * Deletes the complete model with name 'modelName', including all its modelunits
+     * Deletes the complete model with name 'modelName', including all its model units
      * @param modelName
      */
     deleteModel(modelName: string);
@@ -56,9 +48,9 @@ export interface IServerCommunication {
     /**
      * Reads the list of units in model 'modelName' that are available on the server and calls 'modelListCallback'.
      * @param modelName
-     * @param modelListCallback
+     * @param unitListCallback
      */
-    loadUnitList(modelName: string, modelListCallback: (names: string[]) => void);
+    loadUnitList(modelName: string, unitListCallback: (names: string[]) => void);
 
     /**
      * Reads the model unit according to the data in 'modelInfo' from the server and
@@ -84,5 +76,7 @@ export interface IServerCommunication {
      * @param modelName
      * @param loadCallback
      */
+
     // getInterfacesForModel(languageName: string, modelName: string, loadCallback: (piModel: PiElement) => void);
+
 }

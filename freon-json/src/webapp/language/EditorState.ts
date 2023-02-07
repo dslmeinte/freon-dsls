@@ -23,7 +23,6 @@ import { editorEnvironment, serverCommunication } from "../config/WebappConfigur
 import {
     modelErrors,
 } from "../components/stores/InfoPanelStore";
-import { ServerCommunication } from "../server/ServerCommunication";
 
 const LOGGER = new PiLogger("EditorState"); // .mute();
 
@@ -196,7 +195,7 @@ export class EditorState {
         //     await this.saveCurrentUnit();
         // }
         unit.name = newName;
-        ServerCommunication.getInstance().renameModelUnit(this.currentModel.name, oldName, newName, unit);
+        serverCommunication.renameModelUnit(this.currentModel.name, oldName, newName, unit);
         this.setUnitLists();
         console.log("Units after: " + this.currentModel.getUnits().map(u => u.name));
     }
