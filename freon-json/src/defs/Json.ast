@@ -1,0 +1,49 @@
+language Json
+
+model JsonFiles {
+    dirs: JsonDirectory[];
+}
+
+modelunit JsonDirectory {
+    name: identifier;
+    files: JsonFile[];
+}
+
+concept JsonFile {
+    name: identifier;
+    contents: JsonValue;
+}
+
+
+abstract concept JsonValue {}
+
+concept JsonString base JsonValue {
+    value: string;
+}
+
+concept JsonNumber base JsonValue {
+    value: string;
+}
+
+// TODO  can we do the following with a limited concept?
+concept JsonUndefined base JsonValue {}
+
+concept JsonNull base JsonValue {}
+
+concept JsonArray base JsonValue {
+    members: JsonValue[];
+}
+
+concept JsonObject base JsonValue {
+    pairs: JsonKeyValuePair[];
+}
+
+concept JsonKeyValuePair {
+    key: string;
+    value: JsonValue;
+}
+
+concept JsonBoolean base JsonValue {
+    value: boolean;
+}
+

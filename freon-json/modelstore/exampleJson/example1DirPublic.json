@@ -1,0 +1,19 @@
+{
+   "$typename": "JsonDirectory",
+   "name": "example1Dir",
+   "files": [
+      {
+         "$typename": "JsonFile",
+         "name": "foo",
+         "contents": {
+            "$typename": "JsonObject",
+            "pairs": [
+               {
+                  "$typename": "JsonKeyValuePair",
+                  "key": "foo"
+               }
+            ]
+         }
+      }
+   ]
+}

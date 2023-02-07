@@ -1,0 +1,63 @@
+editor default
+
+boolean [true | false]
+
+JsonDirectory {
+    [
+        directory ${name}
+            ${files vertical}
+    ]
+}
+
+JsonFile {
+    [
+        file ${name}
+            ${contents}
+    ]
+    trigger = "file"
+}
+
+JsonString {
+    [\"${value}\"]
+    trigger = "'"
+}
+
+JsonNumber {
+    [${value}]
+    trigger = "1"
+}
+
+JsonUndefined {
+    [undefined]
+    trigger = "undefined"
+}
+
+JsonNull {
+    [null]
+    trigger = "null"
+}
+
+JsonArray {
+    [\[ ${members horizontal separator [, ]} \]]
+    trigger = "["
+}
+
+JsonObject {
+    [
+{
+    ${pairs vertical separator [, ]}
+}
+]
+    trigger = "\{"
+}
+
+JsonKeyValuePair {
+    [\"${key}\": ${value}]
+    trigger = ":"
+}
+
+JsonBoolean {
+    [${value}]
+    trigger = "true"
+}
+

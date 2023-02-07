@@ -1,0 +1,171 @@
+@use 'sass:color';
+
+@use '@material/theme/color-palette';
+
+// Freon Colors!! (Dark Theme)
+@use '@material/theme/index' as theme with (
+  $primary: color-palette.$light-green-100,
+  $secondary: color.scale(#b53d00, $whiteness: +20%),
+  $surface: color-palette.$grey-900,
+  $background: #000,
+  $error: #B00020,
+  //$on-primary: #ffffb0,
+  //$on-primary: purple,     // a slighter darker version of 'secondary'
+  $on-secondary: color-palette.$light-green-200,   // a slighter darker version of 'primary'
+  //$on-surface: black,
+  //$on-error: black,
+  //accessible-ink-color,
+  //contrast,
+  //contrast-tone,
+  //luminance,
+  //text-emphasis,
+  //tone
+);
+
+// Include all the global styles that do not involve dark/light modes.
+@use '../app';
+
+// linear-progress is included for the progress indicator in the EditorPart component
+@use '@material/linear-progress/index' as linear-progress;
+
+// my-colored-bar style is used for the progress indicator in the EditorPart component
+.my-colored-bar {
+  @include linear-progress.bar-color(theme.$red-500);
+  @include linear-progress.buffer-color(theme.$red-100);
+}
+
+// status-bar style is used for the StatusBar component above the editor
+.status-bar {
+  //--freon-colors-bg-status: #4f9a94;
+  --freon-colors-bg-status: #4f9a94;
+  --freon-colors-text-status: white;
+  --freon-text-style-status: italic;
+}
+
+.main-frame {
+  /* SplitPane divider */
+  --freon-colors-slider: #{theme.$on-secondary};    /* The color of the slider between the error/search pane and the editor */
+}
+
+// All aliases have text in RED
+.text-box-alias {
+  --freon-text-component-color: #{theme.$blue-grey-100};
+  --freon-text-component-background-color: #{theme.$blue-grey-600};
+  opacity: 100%;
+}
+// All Select boxes are in GREEN
+.text-box-select {
+  --freon-text-component-color: lightgreen;
+}
+// A textbox has text in BLUE
+.text-box-text {
+  --freon-text-component-color: #{theme.$blue-50};
+}
+
+/* The follwoing are CSS variables that are used in the editor part of Freon, i.e. in the package 'core-svelte'. */
+/* Change the values as you like. */
+/* Note that we need to use a different syntax to be able to use SCSS variables as value
+for CSS variables, see https://www.sass-lang.com/documentation/breaking-changes/css-vars */
+.editor-part {
+  box-sizing: border-box;
+  /* Selectable */
+  --freon-selected-background-color: transparant;
+  --freon-selected-outline-color: #{theme.$blue-900};
+  //--freon-editor-component-color: #{--mdc-theme-text-primary-on-dark};       /* The color of the text, unless set otherwise by the projection */
+  //--freon-colors-inverse_color: #{theme.$on-secondary};     /* Text color on non_normal background */
+  //--freon-editor-component-background-color: #{theme.$surface};              /* The background color of the editor */
+  --freon-editor-component-background-color: #{theme.$surface};              /* The background color of the editor */
+  --freon-editor-component-color: #{--mdc-theme-primary};       /* The color of the text, unless set otherwise by the projection */
+  --freon-editor-component-margin: 1px;
+  --freon-editor-component-padding: 1px;
+
+  /* Fonts */
+  --freon-editor-component-font-family: "Arial";     /* The font family of the text, unless set otherwise by the projection */
+  --freon-editor-component-font-size: 14px;          /* The font size of the text, unless set otherwise by the projection */
+  --freon-editor-component-font-style: normal;       /* The font style of the text, unless set otherwise by the projection */
+  --freon-editor-component-font-weight: normal;      /* The font weight of the text, unless set otherwise by the projection */
+
+  /* Dropdown colors */
+  --freon-dropdownitem-component-color: #{theme.$blue-900};
+  --freon-dropdownitem-component-background-color: inherit;
+  --freon-dropdownitem-component-border-color: #{theme.$blue-900};
+  --freon-dropdownitem-component-selected-color: inherit;
+  --freon-dropdownitem-component-selected-background-color: inherit;
+  --freon-dropdownitem-component-hover-color: inherit;
+  --freon-dropdownitem-component-hover-background-color: #{theme.$blue-100};
+
+  /* Selectable */
+  --freon-selected-background-color: rgba(11, 27, 253, 255);
+  --freon-selected-outline-color: #{theme.$blue-100};
+
+  --freon-text-component-color: white;
+  --freon-text-component-font-size: 14px;		/* The font size of the text, unless set otherwise by the projection */
+  --freon-text-component-font-style: normal;		/* The font size of the text, unless set otherwise by the projection */
+  --freon-text-component-font-weight: normal;	/* The font size of the text, unless set otherwise by the projection */
+  --freon-text-component-font-family: "Arial";	/* The font size of the text, unless set otherwise by the projection */
+  --freon-text-component-padding: 0px 1px 0px 1px;
+  --freon-text-component-margin: 1px;
+
+  --freon-label-component-color: #{color-palette.$yellow-500};
+  --freon-label-component-background-color: inherit;
+  --freon-label-component-font-size: 14px;		/* The font size of the text, unless set otherwise by the projection */
+  --freon-label-component-font-style: normal;		/* The font size of the text, unless set otherwise by the projection */
+  --freon-label-component-font-weight: normal;	/* The font size of the text, unless set otherwise by the projection */
+  --freon-label-component-font-family: "Arial";	/* The font size of the text, unless set otherwise by the projection */
+  --freon-label-component-padding: 0px 1px 0px 1px;
+  --freon-label-component-margin: 1px;
+
+  /* Popup */
+  --freon-popup-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+
+  --freon-text-component-padding: 0px;
+  --freon-label-component-padding: 0px;
+
+  --freon-horizontallist-component-padding: 1px;
+  --freon-horizontallist-component-margin: 1px;
+
+  --freon-verticallist-component-padding: 1px;
+  --freon-verticallist-component-margin: 1px;
+
+  --freon-grid-component-border-color: #{color-palette.$green-200};
+
+}
+
+// Table styling
+.gridcellOdd {
+  --freon-gridcell-component-background-color: #{theme.$grey-600};
+}
+.gridcellEven {
+  --freon-gridcell-component-background-color: transparent;
+}
+.gridcell-header {
+  --freon-gridcell-component-background-color: #{theme.$grey-800};
+}
+
+// Uncomment this to get a green background on the name of an Entity
+//.Entity-name-textbox {
+//  --freon-text-component-background-color: lightgreen;
+//}
+
+// Text in string literal is green
+.StringLiteralExpression-value-textbox {
+  --freon-text-component-color: lightgreen;
+}
+
+// All labels (fixed text) containing the word Unit get the following style
+.Unit {
+  --freon-label-component-font-weight: bold;
+  --freon-label-component-color: lightmagenta;
+}
+
+.alias-binary-pre-textbox, .alias-binary-post-textbox, .alias-exp-left-textbox, .alias-exp-right-textbox {
+  --freon-text-component-margin: 0px;
+  --freon-text-component-padding: -1px 1px 0px 1px;
+}
+
+html,
+body {
+  background-color: theme.$surface;
+  color: theme.$on-surface;
+  --mdc-theme-primary: #{theme.$blue-200};
+}
